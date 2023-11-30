@@ -5,7 +5,8 @@ using UnityEngine;
 public class DragDrop : MonoBehaviour
 {
     [SerializeField] GameObject DropZone;
-
+    [SerializeField] GameObject PlayerManager;
+    [SerializeField] Card card;
     private bool isDragging= false;
     private GameObject startParent;
     private Vector2 startPos;
