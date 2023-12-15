@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Card : MonoBehaviour
+public class DefenseCard : MonoBehaviour
 {
-    [SerializeField] int cost;
+    // Start is called before the first frame update
     void Start()
     {
         

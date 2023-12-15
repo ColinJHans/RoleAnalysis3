@@ -5,7 +5,6 @@ using UnityEngine;
 public class DragDrop : MonoBehaviour
 {
     [SerializeField] GameObject DropZone;
-    [SerializeField] GameObject PlayerManager;
     [SerializeField] Card card;
     private bool isDragging= false;
     private GameObject startParent;
@@ -36,9 +35,25 @@ public class DragDrop : MonoBehaviour
     public void endDrag() 
     {
         isDragging = false;
-        if (isOverDropZone)
+        Debug.Log(this.gameObject.name);
+        if (isOverDropZone && GameManager.instance.turnMana >= 1)
         {
+            GameManager.instance.subtractMana(1);
             transform.SetParent(dropZone.transform, false);
+            if (this.gameObject.name == "AttackCard(Clone)")
+            {
+                Enemy.Instance.health--;
+                Enemy.Instance.setHealthText();
+            }
+            if (this.gameObject.name == "ManaCard(Clone)")
+            {
+                GameManager.instance.addMana();
+            }
+            if (this.gameObject.name == "DefenseCard(Clone)")
+            {
+                GameManager.instance.health++;
+                GameManager.instance.updateHealthText();
+            }
         }
         else
         {

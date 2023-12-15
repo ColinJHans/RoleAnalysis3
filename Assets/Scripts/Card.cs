@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackCard : Card
+public class Card : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] public int cost = 0;
+    public string type;
     void Start()
     {
-        cost = 1;
-        type = "Attack";
+        
     }
 
     // Update is called once per frame

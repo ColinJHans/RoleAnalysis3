@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8434249712324134767}
   - component: {fileID: 8434249712324134768}
   - component: {fileID: 8434249712324134769}
+  - component: {fileID: 5429618257578976082}
   - component: {fileID: 7514585345013282848}
   m_Layer: 5
   m_Name: DrawCardButton
@@ -123,18 +124,33 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8434249712324134771}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 7514585345013282848}
+        m_TargetAssemblyTypeName: DrawCards, Assembly-CSharp
+        m_MethodName: onClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5429618257578976082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8434249712324134771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c8a2329bd1237547b064a80e730fbad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DropZone: {fileID: 0}
+  player: {fileID: 0}
+  card: {fileID: 0}
 --- !u!114 &7514585345013282848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,8 +163,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02331e15e1677f4409af04e11892e0c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 7210089657204452481, guid: 44687f3797c06f041bb712efdc800917, type: 3}
-  playerArea: {fileID: 1746943226734212087, guid: 9cf95e50df30941479d48e7b083a01e3, type: 3}
+  card1: {fileID: 8735099101450537059, guid: 203c4c17c2b50164893a45a4a2cc38d3, type: 3}
+  card2: {fileID: 6277624742853866791, guid: 74ea239226339db4f8c306acd816a89d, type: 3}
+  card3: {fileID: 6241785902665795683, guid: ffbcf9a0bc3a62d41b4d8d50734eb533, type: 3}
+  playerArea: {fileID: 0}
 --- !u!1 &8434249713329815655
 GameObject:
   m_ObjectHideFlags: 0
