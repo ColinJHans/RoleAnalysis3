@@ -7,6 +7,7 @@ public class DrawCards : MonoBehaviour
     [SerializeField] GameObject card1;
     [SerializeField] GameObject card2;
     [SerializeField] GameObject card3;
+    [SerializeField] GameObject card4;
     [SerializeField] GameObject playerArea;
 
     public void onClick()
@@ -26,6 +27,11 @@ public class DrawCards : MonoBehaviour
         for (int i = 0; i < 2; i++)
         {
             GameObject newCard = Instantiate(card3, new Vector2(0, 0), Quaternion.identity);
+            newCard.transform.SetParent(playerArea.transform, false);
+        }
+        for (int i = 0; i < 2; i++)
+        {
+            GameObject newCard = Instantiate(card4, new Vector2(0, 0), Quaternion.identity);
             newCard.transform.SetParent(playerArea.transform, false);
         }
     }

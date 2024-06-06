@@ -11,10 +11,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI healthText;
     [SerializeField] TextMeshProUGUI turnText;
     [SerializeField] TextMeshProUGUI endGameText;
+    
     [SerializeField] GameObject attackCard;
     [SerializeField] GameObject defenseCard;
+    [SerializeField] GameObject chaCard;
+    [SerializeField] GameObject couCard;
+    [SerializeField] GameObject cleCard;
+    [SerializeField] GameObject creCard;
     [SerializeField] GameObject manaCard;
+
     [SerializeField] GameObject playerArea;
+    [SerializeField] GameObject ConvoTopic;
     
     [SerializeField] public int health = 3;
     [SerializeField] public int startMana = 1;
@@ -29,10 +36,22 @@ public class GameManager : MonoBehaviour
     public int turnMana = 1;
     [SerializeField] public int maxMana = 5;
 
+    public List<string> categories = new List<string>() {"Cha", "Cou", "Cle", "Cre" }; 
     private bool justAttacked = false;
     private void Awake()
     {
-        instance = this; 
+        instance = this;
+        setConvoStart();
+        
+    }
+    public void setConvoStart()
+    {
+        
+        
+    }
+    public void setTopicGM(string type, ConvoTopic topic)
+    {
+        topic.setTopic(type);
     }
     public void addMana()
     {
@@ -65,7 +84,7 @@ public class GameManager : MonoBehaviour
         int cardChoice = Random.Range(1, 4);
         if (cardChoice == 1 ) 
         {
-            GameObject newCard = Instantiate(attackCard, new Vector2(0, 0), Quaternion.identity);
+            GameObject newCard = Instantiate(chaCard, new Vector2(0, 0), Quaternion.identity);
             newCard.transform.SetParent(playerArea.transform, false);
         }
         else if (cardChoice == 2 )

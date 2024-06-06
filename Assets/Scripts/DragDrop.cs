@@ -36,9 +36,9 @@ public class DragDrop : MonoBehaviour
     {
         isDragging = false;
         Debug.Log(this.gameObject.name);
-        if (isOverDropZone && GameManager.instance.turnMana >= 1)
+        Debug.Log(dropZone);
+        if (isOverDropZone)
         {
-            GameManager.instance.subtractMana(1);
             transform.SetParent(dropZone.transform, false);
             if (this.gameObject.name == "AttackCard(Clone)")
             {
@@ -66,6 +66,7 @@ public class DragDrop : MonoBehaviour
     {
         isOverDropZone = true;
         dropZone = collision.gameObject;
+        Debug.Log("HIT");
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
