@@ -18,7 +18,7 @@ public class ConvoTopic : MonoBehaviour
     [SerializeField] Sprite cleIcon;
     [SerializeField] Sprite couIcon;
     [SerializeField] Sprite creIcon;
-    void Start()
+    void Awake()
     {
         iconRenderer = AttrIconContainer.GetComponentInChildren<SpriteRenderer>();
     }

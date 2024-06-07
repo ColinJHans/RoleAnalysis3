@@ -21,22 +21,22 @@ public class DragDrop : MonoBehaviour
     {
      if (isDragging)
         {
-            transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y,0);
         }   
     }
     public void startDrag()
     {
+        //Debug.Log("startdrag");
         isDragging = true;
         startParent = transform.parent.gameObject;
         startPos = transform.position;
+        print(transform.name);
 
 
     }
     public void endDrag() 
     {
         isDragging = false;
-        Debug.Log(this.gameObject.name);
-        Debug.Log(dropZone);
         if (isOverDropZone)
         {
             transform.SetParent(dropZone.transform, false);
@@ -62,13 +62,13 @@ public class DragDrop : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         isOverDropZone = true;
         dropZone = collision.gameObject;
         Debug.Log("HIT");
     }
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         isOverDropZone= false;
         dropZone = null;
