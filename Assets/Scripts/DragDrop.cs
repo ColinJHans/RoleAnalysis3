@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class DragDrop : MonoBehaviour
 {
-    [SerializeField] GameObject DropZone;
+    [SerializeField] Dropzone DropZone;
     [SerializeField] Card card;
+    [SerializeField] PlayerArea playerArea;
     private bool isDragging= false;
     private GameObject startParent;
     private Vector2 startPos;
@@ -15,6 +16,7 @@ public class DragDrop : MonoBehaviour
     void Start()
     {
         dropZone = GameObject.Find("Dropzone");
+        DropZone = dropZone.GetComponent<Dropzone>();
     }
 
     void Update()
@@ -30,7 +32,6 @@ public class DragDrop : MonoBehaviour
         isDragging = true;
         startParent = transform.parent.gameObject;
         startPos = transform.position;
-        print(transform.name);
 
 
     }
@@ -39,21 +40,10 @@ public class DragDrop : MonoBehaviour
         isDragging = false;
         if (isOverDropZone)
         {
+            if (DropZone == null) { print("DropZone is null"); }
             transform.SetParent(dropZone.transform, false);
-            if (this.gameObject.name == "AttackCard(Clone)")
-            {
-                Enemy.Instance.health--;
-                Enemy.Instance.setHealthText();
-            }
-            if (this.gameObject.name == "ManaCard(Clone)")
-            {
-                GameManager.instance.addMana();
-            }
-            if (this.gameObject.name == "DefenseCard(Clone)")
-            {
-                GameManager.instance.health++;
-                GameManager.instance.updateHealthText();
-            }
+            DropZone.addCard(GetComponent<Card>());
+            
         }
         else
         {
@@ -66,7 +56,6 @@ public class DragDrop : MonoBehaviour
     {
         isOverDropZone = true;
         dropZone = collision.gameObject;
-        Debug.Log("HIT");
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

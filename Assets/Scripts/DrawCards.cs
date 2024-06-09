@@ -8,31 +8,20 @@ public class DrawCards : MonoBehaviour
     [SerializeField] GameObject card2;
     [SerializeField] GameObject card3;
     [SerializeField] GameObject card4;
-    [SerializeField] GameObject playerArea;
-
+    [SerializeField] PlayerDeckScript deckContainer;
+    [SerializeField] PlayerArea playerArea;
+    private void Start()
+    {
+    }
     public void onClick()
     {
-        GameManager.instance.addMana();
-        GameManager.instance.manaText.SetText("Mana: " + GameManager.instance.turnMana.ToString());
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 5 ; i++)
         {
-            GameObject newCard = Instantiate(card1, new Vector2(0,0), Quaternion.identity);
-            newCard.transform.SetParent(playerArea.transform, false);
-        }
-        for (int i = 0; i < 2; i++)
-        {
-            GameObject newCard = Instantiate(card2, new Vector2(0, 0), Quaternion.identity);
-            newCard.transform.SetParent(playerArea.transform, false);
-        }
-        for (int i = 0; i < 2; i++)
-        {
-            GameObject newCard = Instantiate(card3, new Vector2(0, 0), Quaternion.identity);
-            newCard.transform.SetParent(playerArea.transform, false);
-        }
-        for (int i = 0; i < 2; i++)
-        {
-            GameObject newCard = Instantiate(card4, new Vector2(0, 0), Quaternion.identity);
-            newCard.transform.SetParent(playerArea.transform, false);
+            Card card = deckContainer.draw();
+            deckContainer.removeCard(card);
+            card.transform.SetParent(playerArea.transform);
+            playerArea.AddCards(card);
+
         }
     }
 }

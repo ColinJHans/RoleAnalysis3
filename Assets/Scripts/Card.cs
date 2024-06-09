@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Card : MonoBehaviour
 {
     [SerializeField] public int cost = 0;
-    public string type;
-    public int power;
+    [SerializeField] public TextMeshProUGUI numText;
+    private string type;
+    public string Type { get { return type;} set { type = value;} }
+    [SerializeField] private int power;
+    public int Power { get { return power; } set { power = value; } }
+    [SerializeField] public GameObject container;
     void Start()
     {
-        
+        numText.text = Power.ToString();
     }
 
     // Update is called once per frame
@@ -17,14 +22,8 @@ public class Card : MonoBehaviour
     {
         
     }
-    int getPower() { return power; }
-    string getType() { return type; }
-
-    void setPower(int powerInput) {power = powerInput;}
-    void setType(string typeInput) { this.type = typeInput;}
-
     void upgradeCard()
     {
-        power += 1;
+        this.power += 1;
     }
 }

@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
-public class ChaCard : Card {
-    void Awake()
+public class CouCard : Card
+{
+    private void Awake()
     {
-        base.Type = "Cha";    
+        base.Type = "Cou";
     }
 
     // Update is called once per frame

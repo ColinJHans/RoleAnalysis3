@@ -6,23 +6,35 @@ using UnityEngine.UI;
 
 public class ConvoTopic : MonoBehaviour
 {
-    [SerializeField] public string convoAttribute;
-    [SerializeField] public int powerNum;
+    [SerializeField] private string convoAttribute;
+    public string ConvoAttribute { get { return convoAttribute; } set { convoAttribute = value; } }
+    [SerializeField] private int powerNum;
+    public int PowerNum { get { return powerNum; } set { powerNum = value; } }
     [SerializeField] TextMeshProUGUI attributeText;
-    [SerializeField] TextMeshProUGUI numText;
-    
+    [SerializeField] public TextMeshProUGUI numText;
+    [SerializeField] Image Background;
     [SerializeField] GameObject AttrIconContainer;
     SpriteRenderer iconRenderer;
     Sprite AttrIcon;
+
+    [SerializeField] GameObject dropZone;
+    [SerializeField] Dropzone DropZone;
+
     [SerializeField] Sprite chaIcon;
     [SerializeField] Sprite cleIcon;
     [SerializeField] Sprite couIcon;
     [SerializeField] Sprite creIcon;
+    [SerializeField] Text convoText;
+    public bool isClicked = false;
     void Awake()
     {
         iconRenderer = AttrIconContainer.GetComponentInChildren<SpriteRenderer>();
     }
-
+    void Start()
+    {
+        dropZone = GameObject.Find("Dropzone");
+        DropZone = dropZone.GetComponent<Dropzone>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -68,4 +80,9 @@ public class ConvoTopic : MonoBehaviour
     {
         return convoAttribute;
     }
+    public void onButtonPress()
+    {
+        if (!isClicked) { Background.color = new Color(1, 0.92f, 0.016f, 1); isClicked = true; DropZone.selectedConvoTopic = this;}
+    }
+    public bool getIsClicked() { return isClicked; }
 }
