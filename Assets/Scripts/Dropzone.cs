@@ -58,8 +58,8 @@ public class Dropzone : MonoBehaviour
                     if (card1.Type == card2.Type) { score++; }
                     if (card1.Power == card2.Power) { score++; }
                     if (card1.Power == card2.Power - 1) { score++; }
-
                 }
+            if (playedCards[i].Type == selectedConvoTopic.ConvoAttribute) { score++; }
                 discard.addToDiscard(playedCards[i]);
                 playedCards[i].transform.parent = discard.transform;
                 playedCards[i].container.SetActive(false);

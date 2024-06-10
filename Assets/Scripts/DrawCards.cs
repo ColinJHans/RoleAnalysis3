@@ -23,5 +23,6 @@ public class DrawCards : MonoBehaviour
             playerArea.AddCards(card);
 
         }
+        this.gameObject.SetActive(false);
     }
 }

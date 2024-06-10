@@ -7,16 +7,16 @@ using TMPro;
 
 public class Playtest : MonoBehaviour
 {
-    [SerializeField] int power1;
-    [SerializeField] int power2;
-    [SerializeField] int power3;
-    [SerializeField] string type1;
-    [SerializeField] string type2;
-    [SerializeField] string type3;
+    [SerializeField] public int power1;
+    [SerializeField] public int power2;
+    [SerializeField] public int power3;
+    [SerializeField] public string type1;
+    [SerializeField] public string type2;
+    [SerializeField] public string type3;
     List<ConvoTopic> convoTopics;
-    [SerializeField] ConvoTopic convoTopic1;
-    [SerializeField] ConvoTopic convoTopic2;
-    [SerializeField] ConvoTopic convoTopic3;
+    [SerializeField] public ConvoTopic convoTopic1;
+    [SerializeField] public ConvoTopic convoTopic2;
+    [SerializeField] public ConvoTopic convoTopic3;
 
     [SerializeField] TextMeshProUGUI dateTextOutput;
     [SerializeField] TextMeshProUGUI playerTextOutput;
@@ -30,7 +30,7 @@ public class Playtest : MonoBehaviour
     // Start is called before the first frame update
     protected void Start()
     {
-        source = new FileInfo("Assets/Assets/dateText.txt");
+        source = new FileInfo("Assets/Assets/CelciText.txt");
         reader = source.OpenText();
         playerSource = new FileInfo("Assets/Assets/playerText.txt");
         playerReader = playerSource.OpenText();

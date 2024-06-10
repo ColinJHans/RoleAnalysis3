@@ -5,33 +5,13 @@ using UnityEngine.UI;
 using System.IO;
 using TMPro;
 
-public class LotteTest : MonoBehaviour
+public class LotteTest : Playtest
 {
-    [SerializeField] int power1;
-    [SerializeField] int power2;
-    [SerializeField] int power3;
-    [SerializeField] string type1;
-    [SerializeField] string type2;
-    [SerializeField] string type3;
-    List<ConvoTopic> convoTopics;
-    [SerializeField] ConvoTopic convoTopic1;
-    [SerializeField] ConvoTopic convoTopic2;
-    [SerializeField] ConvoTopic convoTopic3;
-
-    [SerializeField] TextMeshProUGUI dateTextOutput;
-    [SerializeField] TextMeshProUGUI playerTextOutput;
-    [SerializeField] FileInfo source;
-    protected FileInfo playerSource;
-    public StreamReader reader = null;
-    public StreamReader playerReader = null;
-    protected string text = " ";
-    protected string playerText = " ";
-    float timer = 3f;
     // Start is called before the first frame update
-    protected void Start()
+    protected new void Start()
     {
-        source = new FileInfo("Assets/Assets/dateText.txt");
-        reader = source.OpenText();
+        base.playerSource = new FileInfo("Assets/Assets/LotteText.txt");
+        reader = base.playerSource.OpenText();
         playerSource = new FileInfo("Assets/Assets/playerText.txt");
         playerReader = playerSource.OpenText();
         showTopics();
@@ -57,20 +37,6 @@ public class LotteTest : MonoBehaviour
     void showTopics()
     {
         setTopics(power1, type1, power2, type2, power3, type3);
-    }
-    public void readText(TextMeshProUGUI convoTextOuput, StreamReader stream)
-    {
-        if (text != null)
-        {
-            text = stream.ReadLine();
-            convoTextOuput.text = text;
-        }
-    }
-    void Timer()
-    {
-        if (timer > 0f) { timer -= Time.deltaTime; }
-        else { timer = 0f; }
-
     }
 
 }
