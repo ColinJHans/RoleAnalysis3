@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerArea : MonoBehaviour
 {
-    List<Card> cardsInHand;
+    [SerializeField] List<Card> cardsInHand;
     public List<Card> CardsInHand { get { return cardsInHand; }  }
     private void Awake()
     {

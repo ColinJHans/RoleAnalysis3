@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    [SerializeField] TextMeshProUGUI healthText;
     [SerializeField] TextMeshProUGUI turnText;
     [SerializeField] TextMeshProUGUI endGameText;
     [SerializeField] TextMeshProUGUI fullHandText;
@@ -19,20 +18,19 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] PlayerArea playerArea;
     [SerializeField] GameObject ConvoTopic;
+    [SerializeField] public ConvoTopic currentConvoTopic;
+    [SerializeField] TopicContainer topicContainer;
     [SerializeField] PlayerDeckScript deckContainer;
     [SerializeField] Dropzone dropzone;
     [SerializeField] DiscardPile discard;
     
     [SerializeField] public int health = 3;
     [SerializeField] int missingCards;
-    [SerializeField] Enemy enemy;
-    [SerializeField] GameObject enemyAttackPos;
-    [SerializeField] GameObject enemyStartPos;
     private int turncount = 0;
 
 
     public List<string> categories = new List<string>() {"Cha", "Cou", "Cle", "Cre" }; 
-    private bool justAttacked = false;
+    
     private void Awake()
     {
         instance = this;
@@ -52,14 +50,11 @@ public class GameManager : MonoBehaviour
     {
         topic.setTopic(type);
     }
-    public void updateHealthText()
-    {
-        healthText.text = ("Health: " + health.ToString());
-    }
+
     public void OnEndTurn()
     {
         turncount++;
-        turnText.SetText("Turns Passed: " + turncount.ToString());
+        turnText.SetText("Round: " + turncount.ToString());
         //checks if the players hand has more than 5 cards if so doesnt draw
         if (playerArea.CardsInHand.Count < 5 && deckContainer.Deck.Count > 0) 
         {            
@@ -77,7 +72,8 @@ public class GameManager : MonoBehaviour
         {
             fullHandText.enabled = true;
         }
-
-        dropzone.scoreCard();
+        if (currentConvoTopic != null) { dropzone.scoreCard(); } 
+        
      }
+
 }

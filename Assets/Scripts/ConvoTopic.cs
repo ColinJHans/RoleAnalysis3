@@ -19,21 +19,24 @@ public class ConvoTopic : MonoBehaviour
 
     [SerializeField] GameObject dropZone;
     [SerializeField] Dropzone DropZone;
+    [SerializeField] GameManager gameManager;
 
     [SerializeField] Sprite chaIcon;
     [SerializeField] Sprite cleIcon;
     [SerializeField] Sprite couIcon;
     [SerializeField] Sprite creIcon;
-    [SerializeField] Text convoText;
+
     public bool isClicked = false;
     void Awake()
     {
         iconRenderer = AttrIconContainer.GetComponentInChildren<SpriteRenderer>();
+        gameManager = FindAnyObjectByType<GameManager>();
     }
     void Start()
     {
         dropZone = GameObject.Find("Dropzone");
         DropZone = dropZone.GetComponent<Dropzone>();
+        setIcon();
     }
     // Update is called once per frame
     void Update()
@@ -57,6 +60,7 @@ public class ConvoTopic : MonoBehaviour
         if (convoAttribute.ToLower() == "cha")
         {
             iconRenderer.sprite = chaIcon;
+            iconRenderer.GetComponent<SpriteRenderer>().color = Color.black;
         }
         else if (convoAttribute.ToLower() == "cre")
         {
@@ -82,7 +86,7 @@ public class ConvoTopic : MonoBehaviour
     }
     public void onButtonPress()
     {
-        if (!isClicked) { Background.color = new Color(1, 0.92f, 0.016f, 1); isClicked = true; DropZone.selectedConvoTopic = this;}
+        if (!isClicked) { Background.color = new Color(1, 0.92f, 0.016f, 1); isClicked = true; DropZone.selectedConvoTopic = this; gameManager.currentConvoTopic = this; }
     }
     public bool getIsClicked() { return isClicked; }
 }

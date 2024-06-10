@@ -43,20 +43,10 @@ public class TopicContainer : MonoBehaviour
     {
         for (int i = 0; i < convoTopics.Count; i++)
         {
-            if (convoTopics[i] != null)
-            {
-                if (!convoTopics[i].getIsClicked())
-                {
-                    for (int j = 0; j < convoTopics.Count; j++)
-                    {
-                        if (convoTopics[j].getIsClicked() == false)
-                        {
-                            convoTopics[j].gameObject.GetComponentInChildren<Button>().enabled = true;
-                        }
-                    }
-                    return;
-                }
-            }
+            if (convoTopics[i] == null){continue;}
+            convoTopics[i].gameObject.GetComponentInChildren<Button>().enabled = true;
         }
     }
+  
 }
+

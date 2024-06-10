@@ -110,7 +110,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1794910676395762992}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -376,7 +376,7 @@ Transform:
   m_Children:
   - {fileID: 355919580506172991}
   m_Father: {fileID: 1794910676395762992}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6774775378063008673
 GameObject:
@@ -408,8 +408,8 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4769530229580397140}
-  - {fileID: 3666260205520076006}
   - {fileID: 262464567333059049}
+  - {fileID: 3666260205520076006}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -431,10 +431,14 @@ MonoBehaviour:
   numText: {fileID: 643007534721242267}
   Background: {fileID: 2958710995322265174}
   AttrIconContainer: {fileID: 4070478798660581628}
+  dropZone: {fileID: 0}
+  DropZone: {fileID: 0}
   chaIcon: {fileID: 21300000, guid: 778bed9122c1bba4f8dbc6187b3c8c08, type: 3}
   cleIcon: {fileID: 21300000, guid: bf7973685a9def74da442bb44e6b257c, type: 3}
   couIcon: {fileID: 21300000, guid: 90533b369e6be3648ba8faed0e8cbe56, type: 3}
   creIcon: {fileID: 21300000, guid: dec8e0406a5ee93489f6b7736f9719d4, type: 3}
+  convoText: {fileID: 0}
+  isClicked: 0
 --- !u!1 &7768119353932129551
 GameObject:
   m_ObjectHideFlags: 0
