@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Card : MonoBehaviour
     [SerializeField] private int power;
     public int Power { get { return power; } set { power = value; } }
     [SerializeField] public GameObject container;
+    [SerializeField] public Image background;
     void Start()
     {
         numText.text = Power.ToString();
@@ -25,5 +27,17 @@ public class Card : MonoBehaviour
     void upgradeCard()
     {
         this.power += 1;
+    }
+
+    public void SetImageAlpha(float alpha)
+    {
+        // Get the current color of the Image
+        Color color = background.color;
+
+        // Set the alpha value (range 0 to 1)
+        color.a = Mathf.Clamp01(alpha); // Clamp01 ensures alpha is between 0 and 1
+
+        // Apply the new color with the modified alpha
+        background.color = color;
     }
 }

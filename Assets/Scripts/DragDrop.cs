@@ -7,7 +7,7 @@ public class DragDrop : MonoBehaviour
     [SerializeField] Dropzone DropZone;
     [SerializeField] Card card;
     [SerializeField] PlayerArea playerArea;
-    private bool isDragging= false;
+    private bool isDragging = false;
     private GameObject startParent;
     private Vector2 startPos;
     private GameObject dropZone;
@@ -17,6 +17,7 @@ public class DragDrop : MonoBehaviour
     {
         dropZone = GameObject.Find("Dropzone");
         DropZone = dropZone.GetComponent<Dropzone>();
+        playerArea = GameObject.Find("PlayerArea").GetComponent<PlayerArea>();
     }
 
     void Update()
@@ -43,7 +44,8 @@ public class DragDrop : MonoBehaviour
             if (DropZone == null) { print("DropZone is null"); }
             transform.SetParent(dropZone.transform, false);
             DropZone.addCard(GetComponent<Card>());
-            
+            this.GetComponent<GridElementSwapper>().setFirstSelectedElement(null);
+            playerArea = null;
         }
         else
         {
@@ -63,4 +65,18 @@ public class DragDrop : MonoBehaviour
         dropZone = null;
     }
 
+    public bool getIsDragging()
+    {
+        return isDragging;
+    }
+
+    public PlayerArea getPlayerArea()
+    {
+        return playerArea;
+    }
+
+    public Dropzone getDropzone()
+    {
+        return DropZone;
+    }
 }

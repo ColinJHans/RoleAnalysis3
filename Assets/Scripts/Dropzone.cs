@@ -59,10 +59,10 @@ public class Dropzone : MonoBehaviour
                     if (card1.Power == card2.Power) { score++; }
                     if (card1.Power == card2.Power - 1) { score++; }
                 }
-            if (playedCards[i].Type == selectedConvoTopic.ConvoAttribute) { score++; }
+                if (playedCards[i].Type == selectedConvoTopic.ConvoAttribute) { score++; }
                 discard.addToDiscard(playedCards[i]);
-                playedCards[i].transform.parent = discard.transform;
-                playedCards[i].container.SetActive(false);
+                playedCards[i].transform.SetParent(discard.transform, false);
+                playedCards[i].transform.position = discard.transform.position;
             }
             selectedConvoTopic.PowerNum -= score;
             selectedConvoTopic.numText.text = selectedConvoTopic.PowerNum.ToString();
@@ -81,5 +81,11 @@ public class Dropzone : MonoBehaviour
             }
         currentSession.readText(dateText,dateReader);
         currentSession.readText(playerText,playerReader);
+    }
+    public void swapCards(int cardIndex1, int cardIndex2)
+    {
+        Card temp = playedCards[cardIndex1];
+        playedCards[cardIndex1] = playedCards[cardIndex2];
+        playedCards[cardIndex2] = temp;
     }
 }

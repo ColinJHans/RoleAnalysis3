@@ -22,7 +22,8 @@ public class LotteTest : Playtest
     {
         
     }
-    protected void setTopics(int num1,string topic1, int num2, string topic2, int num3, string topic3)
+
+    protected new void setTopics(int num1,string topic1, int num2, string topic2, int num3, string topic3)
     {
         convoTopic1.setNum(num1);
         convoTopic1.setTopic(topic1);
