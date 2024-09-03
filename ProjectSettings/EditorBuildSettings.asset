@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/CardBattle.unity
+    path: Assets/Scenes/MainMenu.unity
+    guid: 6318c59d64b3f01428927cb600af4ec3
+  - enabled: 1
+    path: Assets/Scenes/CelciTest.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/LotteTest.unity
+    guid: 2a2260cf1b1b95c428a20eb764ba7e9a
   m_configObjects: {}
