@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class DragDrop : MonoBehaviour
 {
-    [SerializeField] GameObject DropZone;
+    [SerializeField] Dropzone DropZone;
     [SerializeField] Card card;
-    private bool isDragging= false;
+    [SerializeField] PlayerArea playerArea;
+    private bool isDragging = false;
     private GameObject startParent;
     private Vector2 startPos;
     private GameObject dropZone;
@@ -15,17 +16,20 @@ public class DragDrop : MonoBehaviour
     void Start()
     {
         dropZone = GameObject.Find("Dropzone");
+        DropZone = dropZone.GetComponent<Dropzone>();
+        playerArea = GameObject.Find("PlayerArea").GetComponent<PlayerArea>();
     }
 
     void Update()
     {
      if (isDragging)
         {
-            transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y,0);
         }   
     }
     public void startDrag()
     {
+        //Debug.Log("startdrag");
         isDragging = true;
         startParent = transform.parent.gameObject;
         startPos = transform.position;
@@ -35,25 +39,13 @@ public class DragDrop : MonoBehaviour
     public void endDrag() 
     {
         isDragging = false;
-        Debug.Log(this.gameObject.name);
-        if (isOverDropZone && GameManager.instance.turnMana >= 1)
+        if (isOverDropZone)
         {
-            GameManager.instance.subtractMana(1);
+            if (DropZone == null) { print("DropZone is null"); }
             transform.SetParent(dropZone.transform, false);
-            if (this.gameObject.name == "AttackCard(Clone)")
-            {
-                Enemy.Instance.health--;
-                Enemy.Instance.setHealthText();
-            }
-            if (this.gameObject.name == "ManaCard(Clone)")
-            {
-                GameManager.instance.addMana();
-            }
-            if (this.gameObject.name == "DefenseCard(Clone)")
-            {
-                GameManager.instance.health++;
-                GameManager.instance.updateHealthText();
-            }
+            DropZone.addCard(GetComponent<Card>());
+            this.GetComponent<GridElementSwapper>().setFirstSelectedElement(null);
+            playerArea = null;
         }
         else
         {
@@ -62,15 +54,29 @@ public class DragDrop : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         isOverDropZone = true;
         dropZone = collision.gameObject;
     }
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         isOverDropZone= false;
         dropZone = null;
     }
 
+    public bool getIsDragging()
+    {
+        return isDragging;
+    }
+
+    public PlayerArea getPlayerArea()
+    {
+        return playerArea;
+    }
+
+    public Dropzone getDropzone()
+    {
+        return DropZone;
+    }
 }
